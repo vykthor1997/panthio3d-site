@@ -25,7 +25,7 @@ export const Modal: React.FC<Props> = ({ open, handleClose, handleSubmit }) => {
             <TextField label="Email" name="email" type="email" />
             <TextField label="Telefone" name="telefone" type="tel" required />
             <Button type="submit" variant="contained">
-              Enviar
+              Salvar
             </Button>
           </FormControl>
         </Box>

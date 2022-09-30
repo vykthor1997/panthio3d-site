@@ -6,6 +6,10 @@ export const header: SxProps<Theme> = {
     '& h2': {
       padding: .5,
       display: 'inline',
+      '& a': {
+        color: 'inherit',
+        marginLeft: 1
+      }
     }
   }
 }

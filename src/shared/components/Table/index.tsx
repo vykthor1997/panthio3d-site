@@ -17,7 +17,7 @@ export const Table: React.FC<Props> = ({ data, handleBlur, handleClear }) => {
     <TableContainer sx={S.table}>
       <Stack direction="row" justifyContent="space-between">
         <Typography component="h2" variant="h5">
-          Preencha os jogos da Copa
+          Preencha os jogos:
         </Typography>
         <Button color="error" variant="outlined" onClick={handleClear}>
           Limpar a aposta
@@ -43,6 +43,7 @@ export const Table: React.FC<Props> = ({ data, handleBlur, handleClear }) => {
                 <TextField 
                   type="number" name="placarMandante" defaultValue={placarMandante} 
                   onBlur={(e: FocusEvent<HTMLInputElement>) => handleBlur(e, index)}
+                  onFocus={e => e.target.select()}
                 />
               </TableCell>
               <TableCell align="center">X</TableCell>
@@ -50,6 +51,7 @@ export const Table: React.FC<Props> = ({ data, handleBlur, handleClear }) => {
                 <TextField 
                   type="number" name="placarVisitante" defaultValue={placarVisitante} 
                   onBlur={(e: FocusEvent<HTMLInputElement>) => handleBlur(e, index)} 
+                  onFocus={e => e.target.select()}
                 />
               </TableCell>
               <TableCell align="left">{visitante}</TableCell>

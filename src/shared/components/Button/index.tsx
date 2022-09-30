@@ -11,7 +11,7 @@ export const Button: React.FC<Props> = ({ handleClick }) => {
     <Divider />
     <Box sx={S.button}>
       <MUIButton variant="contained" onClick={handleClick}>
-        Enviar Aposta
+        Salvar Aposta
       </MUIButton>
     </Box>
     </>
