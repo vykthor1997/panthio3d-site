@@ -1,4 +1,5 @@
-import { FormEvent } from "react"
+import { FocusEvent, FormEvent } from "react"
+import { TData } from "../types"
 
 export const clearInputs = () => {
   const inputs = document.querySelectorAll('input')
@@ -20,3 +21,13 @@ export const getElementValues = (e: FormEvent<HTMLFormElement>, elements: string
   })
 )
 
+export const formatGroups = (data: TData[]) => (
+  data.map((d, index) => {
+    return index % 6 === 0 ? {
+      grupo: d.grupo,
+      data: data.slice(0, index + 6)
+    } : null
+  }).filter(data => data)
+)
+
+export const handleFocus = (e: FocusEvent<HTMLInputElement>) => e.target.select()
