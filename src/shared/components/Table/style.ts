@@ -21,7 +21,7 @@ export const table: SxProps<Theme> = {
     marginBottom: 1,
     '& > div': {
       display: 'grid',
-      gridTemplateColumns: '1fr 1fr 1fr',
+      gridTemplateColumns: '1fr auto 1fr',
       alignItems: 'center',
       gap: 1,
       '& .score': {
