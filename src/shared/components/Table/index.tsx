@@ -1,9 +1,8 @@
 import { FocusEvent } from "react"
-import {TableContainer, Table as MUITable, TableHead, TableCell, TableBody, TableRow, TextField, Typography, Button } from "@mui/material"
+import { Box, Button, Card, Divider, List, ListItem, Stack, TextField, Typography } from "@mui/material"
 import { TData } from "../../types"
-import { columns } from "../../states"
 import * as S from './style'
-import { Stack } from "@mui/system"
+import { formatGroups, handleFocus } from "../../functions"
 
 type Props = {
   data: TData[]
@@ -12,9 +11,11 @@ type Props = {
 }
 
 export const Table: React.FC<Props> = ({ data, handleBlur, handleClear }) => {
-  const getAlign = (index: number) => index != 0 ? 'left' : 'right'
+  const d = formatGroups(data)
+  console.log(d) 
   return (
-    <TableContainer sx={S.table}>
+    <Box sx={S.table}>
+      <>
       <Stack direction="row" justifyContent="space-between">
         <Typography component="h2" variant="h5">
           Preencha os jogos:
@@ -23,42 +24,52 @@ export const Table: React.FC<Props> = ({ data, handleBlur, handleClear }) => {
           Limpar a aposta
         </Button>
       </Stack>
-      <MUITable>
-        <TableHead>
-          <TableRow>
-            {columns.map((column, index) => (
-              <TableCell key={index} align={getAlign(index)}>
-                {column}
-              </TableCell>
+      {d.map((d, index) => (
+        <Card key={index} className="group">
+          <Typography component="h3" variant="h6">
+            Grupo {d?.grupo}
+          </Typography>
+          <Divider />
+          <List>
+            {d?.data.map(({
+              data, hora, local, 
+              mandante, placarMandante, placarVisitante, visitante
+            }, index) => (
+              <ListItem key={index}>
+                <Typography component="p" variant="caption">
+                  {data} &nbsp;
+                  {hora} &nbsp;
+                  {local}
+                </Typography>
+                <Stack direction="row">
+                  <Typography sx={{ textAlign: 'right' }}>
+                    {mandante}
+                  </Typography>
+                  <Box className="score">
+                    <TextField 
+                      type="number" name="placarMandante" 
+                      defaultValue={placarMandante} required 
+                      onBlur={(e: FocusEvent<HTMLInputElement>) => handleBlur(e, index)} onFocus={handleFocus}
+                    />
+                    <Typography>
+                      X
+                    </Typography>
+                    <TextField 
+                      type="number" name="placarVisitante" 
+                      defaultValue={placarVisitante} required 
+                      onBlur={(e: FocusEvent<HTMLInputElement>) => handleBlur(e, index)} onFocus={handleFocus}
+                    />
+                  </Box>
+                  <Typography>
+                    {visitante}
+                  </Typography>
+                </Stack>
+              </ListItem>
             ))}
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {data.map(({ 
-            mandante, placarMandante, placarVisitante, visitante 
-          }, index) => (
-            <TableRow key={index}>
-              <TableCell align="right">{mandante}</TableCell>
-              <TableCell align="center">
-                <TextField 
-                  type="number" name="placarMandante" defaultValue={placarMandante} 
-                  onBlur={(e: FocusEvent<HTMLInputElement>) => handleBlur(e, index)}
-                  onFocus={e => e.target.select()}
-                />
-              </TableCell>
-              <TableCell align="center">X</TableCell>
-              <TableCell align="center">
-                <TextField 
-                  type="number" name="placarVisitante" defaultValue={placarVisitante} 
-                  onBlur={(e: FocusEvent<HTMLInputElement>) => handleBlur(e, index)} 
-                  onFocus={e => e.target.select()}
-                />
-              </TableCell>
-              <TableCell align="left">{visitante}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </MUITable>
-    </TableContainer>
+          </List>
+        </Card>
+      ))}
+      </>
+    </Box>
   )
 }
