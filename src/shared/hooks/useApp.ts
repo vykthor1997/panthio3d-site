@@ -1,6 +1,6 @@
 import { FocusEvent, FormEvent, useState } from 'react'
-import pdfMake from 'pdfmake/build/pdfmake'
-import pdfFonts from 'pdfmake/build/vfs_fonts'
+import * as pdfMake from 'pdfmake/build/pdfmake'
+import * as pdfFonts from 'pdfmake/build/vfs_fonts'
 import { data as d } from '../states'
 import { getElementValues, clearInputs, validate } from '../functions'
 import { pdf } from '../pdf'
