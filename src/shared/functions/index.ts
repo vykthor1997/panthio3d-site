@@ -25,7 +25,7 @@ export const formatGroups = (data: TData[]) => (
   data.map((d, index) => {
     return index % 6 === 0 ? {
       grupo: d.grupo,
-      data: data.slice(0, index + 6)
+      data: data.slice(index, index + 6)
     } : null
   }).filter(data => data)
 )
