@@ -1,8 +1,8 @@
 import { FocusEvent } from "react"
 import { Box, Button, Card, Divider, List, ListItem, Stack, TextField, Typography } from "@mui/material"
 import { TData } from "../../types"
-import * as S from './style'
 import { formatGroups, handleFocus } from "../../functions"
+import * as S from './style'
 
 type Props = {
   data: TData[]
@@ -12,7 +12,6 @@ type Props = {
 
 export const Table: React.FC<Props> = ({ data, handleBlur, handleClear }) => {
   const d = formatGroups(data)
-  console.log(d) 
   return (
     <Box sx={S.table}>
       <>
