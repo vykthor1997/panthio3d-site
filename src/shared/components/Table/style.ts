@@ -2,15 +2,23 @@ import { SxProps, Theme } from "@mui/material"
 
 export const table: SxProps<Theme> = {
   padding: 2,
-  minHeight: '400px',
+  minHeight: '480px',
   flex: 1,
   overflow: 'auto',
   '& h2': {
     marginRight: 2,
   },
+  '& .table': {
+    display: 'grid',
+    margin: 'auto',
+    marginTop: 2,
+    gap: 2,
+    gridTemplateColumns: {
+      md: '1fr 1fr'
+    }
+  },
   '& .group': {
     padding: 2,
-    marginTop: 2
   },
   '& li': {
     flexDirection: 'column',
