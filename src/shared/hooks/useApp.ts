@@ -1,6 +1,6 @@
 import { FocusEvent, FormEvent, useState } from 'react'
-import * as pdfMake from 'pdfmake/build/pdfmake'
-import * as pdfFonts from 'pdfmake/build/vfs_fonts'
+import pdfMake from 'pdfmake/build/pdfmake'
+import pdfFonts from 'pdfmake/build/vfs_fonts'
 import { data as d } from '../states'
 import { getElementValues, clearInputs, validate } from '../functions'
 import { pdf } from '../pdf'
@@ -10,7 +10,7 @@ const data = storageItem ? JSON.parse(storageItem) as [] : []
 const state = data.length > 0 ? data : d
     
 export const useApp = () => {
-  (<any>pdfMake).vfs = pdfFonts.pdfMake.vfs
+  (pdfMake as any).vfs = pdfFonts.pdfMake.vfs;
   const [ data, setData ] = useState(state)
   const [ modal, setModal ] = useState(false)
   const [ loader, setLoader ] = useState(false)
