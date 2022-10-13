@@ -15,6 +15,7 @@ export const useApp = () => {
   const [ modal, setModal ] = useState(false)
   const [ loader, setLoader ] = useState(false)
   const [ message, setMessage ] = useState('')
+  const [ content, setContent ] = useState(false)
 
   const handleBlur = (e: FocusEvent<HTMLInputElement>, index: number) => {
     const d = [ ...data ]
@@ -43,6 +44,7 @@ export const useApp = () => {
     setModal(false)
     setLoader(false)
     setMessage('')
+    setContent(false)
   }
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -53,7 +55,8 @@ export const useApp = () => {
       const doc = pdf(data, { nome, email, telefone })
       pdfMake.createPdf(doc).open()
       setModal(false)
-      setMessage('Aposta realizada com sucesso!')
+      setContent(true)
+      setMessage('PDF gerado com sucesso!')
     } catch (error) {
       setMessage('Algo deu errado!')
       setLoader(false)
@@ -65,6 +68,6 @@ export const useApp = () => {
     handleBlur, handleClear,
     modal, handleOpen, handleClose,
     handleSubmit,
-    loader, message 
+    loader, message, content 
   }
 }
