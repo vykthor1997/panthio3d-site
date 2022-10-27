@@ -17,8 +17,10 @@ export const useApp = () => {
   const [ message, setMessage ] = useState('')
   const [ content, setContent ] = useState(false)
 
-  const handleBlur = (e: FocusEvent<HTMLInputElement>, index: number) => {
+  const handleBlur = (e: FocusEvent<HTMLInputElement>, i: number, j: number) => {
     const d = [ ...data ]
+    const index = (i * 6) + j
+    console.log(i, j, index)
     d[index] = { 
       ...d[index], 
       [ e.currentTarget.name ]: Number(e.currentTarget.value)

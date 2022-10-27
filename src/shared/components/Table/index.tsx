@@ -6,7 +6,7 @@ import * as S from './style'
 
 type Props = {
   data: TData[]
-  handleBlur(e: FocusEvent<HTMLInputElement>, index: number): void
+  handleBlur(e: FocusEvent<HTMLInputElement>, i: number, j: number): void
   handleClear(): void
 }
 
@@ -24,8 +24,8 @@ export const Table: React.FC<Props> = ({ data, handleBlur, handleClear }) => {
         </Button>
       </Stack>
       <Box className="table">
-        {d.map((d, index) => (
-          <Card key={index} className="group">
+        {d.map((d, i) => (
+          <Card key={i} className="group">
             <Typography component="h3" variant="h6">
               Grupo {d?.grupo}
             </Typography>
@@ -33,8 +33,8 @@ export const Table: React.FC<Props> = ({ data, handleBlur, handleClear }) => {
               {d?.data.map(({
                 data, hora, local, 
                 mandante, placarMandante, placarVisitante, visitante
-              }, index) => (
-                <ListItem key={index}>
+              }, j) => (
+                <ListItem key={j}>
                   <Typography component="p" variant="caption">
                     {data} &nbsp;
                     {hora} &nbsp;
@@ -48,7 +48,7 @@ export const Table: React.FC<Props> = ({ data, handleBlur, handleClear }) => {
                       <TextField 
                         type="number" name="placarMandante" 
                         defaultValue={placarMandante} required 
-                        onBlur={(e: FocusEvent<HTMLInputElement>) => handleBlur(e, index)} onFocus={handleFocus}
+                        onBlur={(e: FocusEvent<HTMLInputElement>) => handleBlur(e, i, j)} onFocus={handleFocus}
                       />
                       <Typography>
                         X
@@ -56,7 +56,7 @@ export const Table: React.FC<Props> = ({ data, handleBlur, handleClear }) => {
                       <TextField 
                         type="number" name="placarVisitante" 
                         defaultValue={placarVisitante} required 
-                        onBlur={(e: FocusEvent<HTMLInputElement>) => handleBlur(e, index)} onFocus={handleFocus}
+                        onBlur={(e: FocusEvent<HTMLInputElement>) => handleBlur(e, i, j)} onFocus={handleFocus}
                       />
                     </Box>
                     <Typography>
